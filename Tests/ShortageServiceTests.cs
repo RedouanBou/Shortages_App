@@ -7,11 +7,12 @@ namespace ShortageApp.Tests
 {
     public class ShortageServiceTests
     {
+
+        private static ShortageService _service = new ShortageService();
+
         [Fact]
         public void AddShortage_ShouldAddShortage()
         {
-            ShortageService service = new ShortageService();
-
             var shortage = new Shortage
             {
                 Title = "Projector",
@@ -22,8 +23,8 @@ namespace ShortageApp.Tests
                 CreatedOn = DateTime.Now
             };
 
-            service.AddShortage(shortage);
-            var shortages = service.GetShortages("user1", true);
+            _service.AddShortage(shortage);
+            var shortages = _service.GetShortages("user1", true);
 
             Assert.Single(shortages, s => s.Title == "Projector" && s.Room == Room.MeetingRoom);
         }
@@ -31,8 +32,6 @@ namespace ShortageApp.Tests
          [Fact]
         public void DeleteShortage_ShouldRemoveShortage_WhenUserIsOwnerOrAdmin()
         {
-            ShortageService service = new ShortageService();
-
             var shortage = new Shortage
             {
                 Title = "Coffee",
@@ -43,10 +42,10 @@ namespace ShortageApp.Tests
                 CreatedOn = DateTime.Now
             };
 
-            service.AddShortage(shortage);
+            _service.AddShortage(shortage);
 
-            service.DeleteShortage("Coffee", Room.Kitchen, "user2", true);
-            var shortages = service.GetShortages("user2", true);
+            _service.DeleteShortage("Coffee", Room.Kitchen, "user2", true);
+            var shortages = _service.GetShortages("user2", true);
 
             Assert.DoesNotContain(shortages, s => s.Title == "Coffee" && s.Room == Room.Kitchen);
         }
