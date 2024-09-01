@@ -45,11 +45,9 @@ namespace ShortageApp.Tests
 
             service.AddShortage(shortage);
 
-            // Act
             service.DeleteShortage("Coffee", Room.Kitchen, "user2", true);
             var shortages = service.GetShortages("user2", true);
 
-            // Assert
             Assert.DoesNotContain(shortages, s => s.Title == "Coffee" && s.Room == Room.Kitchen);
         }
     }
