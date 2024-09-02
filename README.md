@@ -25,8 +25,7 @@ Follow these steps to run the Shortage App locally on your computer:
 
 2. Clone the Project
 Clone the repository to your local machine throught Command Prompt:
-
-```git clone https://github.com/yourusername/ShortageApp.git```
+```git clone https://github.com/RedouanBou/ShortageApp.git```
 
 3. Go into the project folder with:
 ```cd ShortageApp```
